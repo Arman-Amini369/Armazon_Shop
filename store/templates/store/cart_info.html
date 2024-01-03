@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Cart Info | Armazon Shop</title>{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1><hr />
+<h3>The number of products which are in your cart is <span style="color : red">{{carts.count}}</span></h3>
+{% for cart in carts %}
+    <h3>{{forloop.counter}}. {{cart.product}} - quantity : {{cart.quantities}}</h3>
+{% endfor %}
+{% endblock %}

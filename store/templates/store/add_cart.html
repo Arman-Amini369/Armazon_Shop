@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Adding to card | Armazon Shop</title>{% endblock %}
+
+{% block content %}
+<h1>Qantity of product form</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Add" class="btn btn-outline-primary">
+</form>
+{% endblock %}

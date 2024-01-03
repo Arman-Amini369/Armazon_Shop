@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}<title>Product info | Armazon Shop</title>{% endblock %}
+
+{% block content %}
+{% for product in products %}
+    <h1>{{product.name}}</h1><hr />
+    <img src="{% static image %}" alt="Picture of Product"><hr />
+    <h5>{{product.description}}</h5><hr />
+    <h3>Price:${{product.price}}</h3>
+    <a href="{% url 'store:add_card' product.id %}" class="btn btn-outline-success">Add to card</a>
+<hr /><br />
+<h1>Comments</h1>
+{% if request.user.is_authenticated %}
+<a href="{% url 'store:add_comment' product.id  %}" class="btn btn-outline-secondary">Add Comment</a><hr />
+{% else %}
+<h2 class="alert alert-warning">For adding comments you must login</h2>
+{% endif %}
+{% for comment in comments %}
+<b><h3>User : {{comment.user.first_name}}-{{comment.user.last_name}}</h3></b><br />
+<h2>{{comment.body}}</h2>
+<h3>Score : {{comment.score}}</h3><hr />
+{% endfor %}
+{% endfor %}
+{% endblock %}
