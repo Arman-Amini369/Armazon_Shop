@@ -56,3 +56,9 @@ def add_comment(request, product_id):
     else:
         form = AddCommentForm()
     return render(request, "store/add_comment.html", {"form" : form})
+
+@login_required(login_url="accounts:user_login")
+def delete_comment(request, product_id):
+    comment = Comment.objects.filter(product__id=product_id).delete()
+    messages.success(request, "Comment Deleted Successfully", 'success')
+    return redirect("store:product_info", product_id)

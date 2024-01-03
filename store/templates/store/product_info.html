@@ -20,7 +20,11 @@
 {% for comment in comments %}
 <b><h3>User : {{comment.user.first_name}}-{{comment.user.last_name}}</h3></b><br />
 <h2>{{comment.body}}</h2>
-<h3>Score : {{comment.score}}</h3><hr />
+<h3>Score : {{comment.score}}</h3>
+{% if comment.user == request.user %}
+<a href="{% url 'store:comment_delete' product.id %}" class="btn btn-outline-danger">Delete Comment</a>
+{% endif %}
+<hr />
 {% endfor %}
 {% endfor %}
 {% endblock %}
